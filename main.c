@@ -21,6 +21,7 @@ int		main()
 		printf("%s[OK]%s ", GREEN, RESET);
 	else
 		printf("%s[KO]%s ", YELLOW, RESET);
+	free(line);
 	printf("\n");
 	return (0);
 }

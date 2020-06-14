@@ -122,6 +122,8 @@ void    *testing(char *s, size_t size, int (*f)(int, char**))
     if(!(textFile = f_strdup("")) || !(result = f_strdup("")))
 	{
 		printf("Error file main.c");
+		free(textFile);
+		free(result);
 		return (NULL);
 	}
     fd = open(s, O_RDONLY);
@@ -132,9 +134,12 @@ void    *testing(char *s, size_t size, int (*f)(int, char**))
 		if (!(textFile = f_strjoin(t, buff)))
 		{
 			free(textFile);
+			free(result);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
 	fdTest = open(s, O_RDONLY);
 	while ((ret = f(fdTest, &line)) > 0)
@@ -144,24 +149,31 @@ void    *testing(char *s, size_t size, int (*f)(int, char**))
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(line);
+		free(t);
 	}
 	t = result;
 	if (!(result = f_strjoin(t, line)))
 	{
 		free(result);
 		free(textFile);
+		free(line);
 		printf("Error file main.c");
 		return (NULL);
 	}
+	free(t);
 	if (!f_strncmp(textFile, result))
 		printf("%s[OK]%s ", GREEN, RESET);
 	else
 		printf("%s[KO]%s ", YELLOW, RESET);
 	free(result);
 	free(textFile);
+	free(line);
     return ((void *)1);
 }
 
@@ -183,6 +195,8 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
     if(!(textFile = f_strdup("")) || !(result = f_strdup("")))
 	{
 		printf("Error file main.c");
+		free(textFile);
+		free(result);
 		return (NULL);
 	}
     fd = open(s3, O_RDONLY);
@@ -193,9 +207,12 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		if (!(textFile = f_strjoin(t, buff)))
 		{
 			free(textFile);
+			free(result);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
 	fdTest = open(s, O_RDONLY);
 	fdTest1 = open(s1, O_RDONLY);
@@ -207,10 +224,14 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
+	free(line);
 	if ((ret = f(fdTest, &line)) > 0)
 	{
 		t = result;
@@ -218,10 +239,14 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
+	free(line);
 	if ((ret = f(fdTest2, &line)) > 0)
 	{
 		t = result;
@@ -229,10 +254,14 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
+	free(line);
 	if ((ret = f(fdTest1, &line)) > 0)
 	{
 		t = result;
@@ -240,10 +269,14 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
+	free(line);
 	if ((ret = f(fdTest2, &line)) > 0)
 	{
 		t = result;
@@ -251,10 +284,14 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
+	free(line);
 	while ((ret = f(fdTest1, &line)) > 0)
 	{
 		t = result;
@@ -262,18 +299,26 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(line);
+		free(t);
 	}
 	t = result;
 	if (!(result = f_strjoin_n(t, line)))
 	{
 		free(result);
 		free(textFile);
+		free(line);
+		free(t);
 		printf("Error file main.c");
 		return (NULL);
 	}
+	free(line);
+	free(t);
 	if ((ret = f(fdTest2, &line)) > 0)
 	{
 		t = result;
@@ -281,10 +326,14 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 		{
 			free(result);
 			free(textFile);
+			free(line);
+			free(t);
 			printf("Error file main.c");
 			return (NULL);
 		}
+		free(t);
 	}
+	free(line);
 	if (!f_strncmp(textFile, result))
 		printf("%s[OK]%s ", GREEN, RESET);
 	else
