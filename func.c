@@ -119,7 +119,13 @@ void    *testing(char *s, size_t size, int (*f)(int, char**))
 	int ret;
 	char *line;
 
-    if(!(textFile = f_strdup("")) || !(result = f_strdup("")))
+    if(!(textFile = f_strdup("")))
+	{
+		printf("Error file main.c");
+		free(textFile);
+		return (NULL);
+	}
+	if (!(result = f_strdup("")))
 	{
 		printf("Error file main.c");
 		free(textFile);
@@ -192,7 +198,13 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 	int ret;
 	char *line;
 
-    if(!(textFile = f_strdup("")) || !(result = f_strdup("")))
+    if(!(textFile = f_strdup("")))
+	{
+		printf("Error file main.c");
+		free(textFile);
+		return (NULL);
+	}
+	if (!(result = f_strdup("")))
 	{
 		printf("Error file main.c");
 		free(textFile);
@@ -230,8 +242,8 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 			return (NULL);
 		}
 		free(t);
+		free(line);
 	}
-	free(line);
 	if ((ret = f(fdTest, &line)) > 0)
 	{
 		t = result;
@@ -245,8 +257,8 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 			return (NULL);
 		}
 		free(t);
+		free(line);
 	}
-	free(line);
 	if ((ret = f(fdTest2, &line)) > 0)
 	{
 		t = result;
@@ -260,8 +272,8 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 			return (NULL);
 		}
 		free(t);
+		free(line);
 	}
-	free(line);
 	if ((ret = f(fdTest1, &line)) > 0)
 	{
 		t = result;
@@ -275,8 +287,8 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 			return (NULL);
 		}
 		free(t);
+		free(line);
 	}
-	free(line);
 	if ((ret = f(fdTest2, &line)) > 0)
 	{
 		t = result;
@@ -290,8 +302,8 @@ void    *testing_bonus(char *s, char *s1, char *s2, char *s3, size_t size, int (
 			return (NULL);
 		}
 		free(t);
+		free(line);
 	}
-	free(line);
 	while ((ret = f(fdTest1, &line)) > 0)
 	{
 		t = result;

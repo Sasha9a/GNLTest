@@ -1,4 +1,4 @@
-NAME = main
+NAME = main.out
 FLAGS = -g -O0 -Wall -Wextra -Werror -D
 
 SRCS = ../get_next_line.c ../get_next_line_utils.c func.c main.c
@@ -7,7 +7,7 @@ SRCS_BONUS = ../get_next_line_bonus.c ../get_next_line_utils_bonus.c func.c main
 HEADER = ../get_next_line.h
 HEADER_BONUS = ../get_next_line_bonus.h
 
-BUFFER_SIZE = 1025
+BUFFER_SIZE = 32
 
 all: $(NAME)
 
@@ -31,4 +31,7 @@ bonus: $(SRCS_BONUS) $(HEADER_BONUS)
 	@norminette $(HEADER_BONUS) ../get_next_line_bonus.c ../get_next_line_utils_bonus.c
 	@/bin/rm -f $(NAME)
 
-.PHONY: all bonus
+fclean:
+	@/bin/rm -f $(NAME)
+
+.PHONY: all bonus fclean
